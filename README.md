@@ -3,6 +3,7 @@ Introduction
 
 This guide explains how to configure and make use of the EMC Cinder driver with the Folsom release of OpenStack.
 
+
 Overview
 ========
 
@@ -14,12 +15,14 @@ The EMC CIM Object Manager (ECOM) is packaged with the EMC SMI-S Provider. It is
 
 The EMC SMI-S Provider supports the SNIA Storage Management Initiative (SMI), an ANSI standard for storage management. It supports VMAX/VMAXe and VNX storage systems.
 
+
 Requirements
 ============
 
 EMC SMI-S Provider V4.5 and higher is required.  SMI-S can be downloaded from EMC's Powerlink web site http://powerlink.emc.com.  Refer to the EMC SMI-S Provider release notes for installation instructions. 
 
 VMAX/VMAXe arrays and VNX arrays are supported.
+
 
 Supported Operations
 ====================
@@ -38,6 +41,7 @@ The following operations will be supported on VNX only:
 * Create volume from snapshot
 
 Only thin provisioning is supported by the EMC Cinder driver.
+
 
 Preparation
 ===========
@@ -110,6 +114,7 @@ Create Masking View on VMAX/VMAXe
 
 For VMAX/VMAXe, user needs to do initial setup on the SMC server first.  On the SMC server, create initiator group, storage group, port group, and put them in a masking view.  Initiator group contains the initiator names of the openstack hosts.  Storage group should have at least 6 gatekeepers.
 
+
 Setup
 =====
 
@@ -135,8 +140,9 @@ iscsi_ip_address = 10.10.61.35
 volume_driver = cinder.volume.emc.EMCISCSIDriver
 cinder_emc_config_file = /etc/cinder/cinder_emc_config.xml
 ```
-										Restart the cinder-volume service.
-										cinder_emc_config.xml								---------------------
+Restart the cinder-volume service.
+
+cinder_emc_config.xml								---------------------
 										Create the file /etc/cinder/cinder_emc_config.xml.  We don't need to restart service for this change.
 										For VMAX/VMAXe, we have the following in the xml file:
 ```
@@ -163,8 +169,11 @@ For VNX, we have the following in the xml file:
 </EMC>
 ```
 
-<MaskingView> is required for attaching VMAX/VMAXe volumes to an OpenStack VM.  A Masking View can be created using SMC.  The Masking View needs to have an Initiator Group that contains the initiator of the OpenStack compute node that hosts the VM.
+"<MaskingView>" is required for attaching VMAX/VMAXe volumes to an OpenStack VM.  A Masking View can be created using SMC.  The Masking View needs to have an Initiator Group that contains the initiator of the OpenStack compute node that hosts the VM.
 
-<StorageType> is the thin pool where user wants to create volume from.  Only thin LUNs are supported by the plugin.  <StorageType> is required for both VMAX/VMAXe and VNX.  Thin pools can be created using SMC for VMAX/VMAXe and Unisphere for VNX.
+"<StorageType>" is the thin pool where user wants to create volume from.  Only thin LUNs are supported by the plugin.  <StorageType> is required for both VMAX/VMAXe and VNX.  Thin pools can be created using SMC for VMAX/VMAXe and Unisphere for VNX.
 
-<EcomServerIp> and <EcomServerPort> are the IP address and port number of the ECOM server which is packaged with SMI-S.  <EcomUserName> and <EcomPassword> are credentials for the ECOM server.
+"<EcomServerIp>" and "<EcomServerPort>" are the IP address and port number of the ECOM server which is packaged with SMI-S.  "<EcomUserName>" and "<EcomPassword>" are credentials for the ECOM server.
+
+
+``Copyright (c) 2012 EMC Corporation, Inc.``
