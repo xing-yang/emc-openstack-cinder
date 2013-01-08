@@ -143,7 +143,8 @@ cinder_emc_config_file = /etc/cinder/cinder_emc_config.xml
 Restart the cinder-volume service.
 
 cinder_emc_config.xml								---------------------
-										Create the file /etc/cinder/cinder_emc_config.xml.  We don't need to restart service for this change.
+
+Create the file /etc/cinder/cinder_emc_config.xml.  We don't need to restart service for this change.
 										For VMAX/VMAXe, we have the following in the xml file:
 ```
 <?xml version='1.0' encoding='UTF-8'?>
@@ -169,11 +170,11 @@ For VNX, we have the following in the xml file:
 </EMC>
 ```
 
-"<MaskingView>" is required for attaching VMAX/VMAXe volumes to an OpenStack VM.  A Masking View can be created using SMC.  The Masking View needs to have an Initiator Group that contains the initiator of the OpenStack compute node that hosts the VM.
+MaskingView is required for attaching VMAX/VMAXe volumes to an OpenStack VM.  A Masking View can be created using SMC.  The Masking View needs to have an Initiator Group that contains the initiator of the OpenStack compute node that hosts the VM.
 
-"<StorageType>" is the thin pool where user wants to create volume from.  Only thin LUNs are supported by the plugin.  <StorageType> is required for both VMAX/VMAXe and VNX.  Thin pools can be created using SMC for VMAX/VMAXe and Unisphere for VNX.
+StorageType is the thin pool where user wants to create volume from.  Only thin LUNs are supported by the plugin.  <StorageType> is required for both VMAX/VMAXe and VNX.  Thin pools can be created using SMC for VMAX/VMAXe and Unisphere for VNX.
 
-"<EcomServerIp>" and "<EcomServerPort>" are the IP address and port number of the ECOM server which is packaged with SMI-S.  "<EcomUserName>" and "<EcomPassword>" are credentials for the ECOM server.
+EcomServerIp and EcomServerPort are the IP address and port number of the ECOM server which is packaged with SMI-S.  EcomUserName and EcomPassword are credentials for the ECOM server.
 
 
-``Copyright (c) 2012 EMC Corporation, Inc.``
+``Copyright (c) 2012 EMC Corporation.``
