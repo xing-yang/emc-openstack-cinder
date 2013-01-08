@@ -118,8 +118,8 @@ For VMAX/VMAXe, user needs to do initial setup on the SMC server first.  On the 
 Setup
 =====
 
-cinder.conf
------------
+Config file cinder.conf
+-----------------------
 
 Make the following changes in /etc/cinder/cinder.conf:
 
@@ -142,7 +142,8 @@ cinder_emc_config_file = /etc/cinder/cinder_emc_config.xml
 ```
 Restart the cinder-volume service.
 
-cinder_emc_config.xml								---------------------
+Config file cinder_emc_config.xml
+---------------------------------
 
 Create the file /etc/cinder/cinder_emc_config.xml.  We don't need to restart service for this change.
 										For VMAX/VMAXe, we have the following in the xml file:
