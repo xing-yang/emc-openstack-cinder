@@ -49,7 +49,7 @@ Preparation
 Download Cinder driver
 ----------------------
 
-Download the EMC Cinder driver file from the following location: https://github.com/june123/emc-openstack-cinder/blob/master/emc.py
+Download the EMC Cinder driver file from the following location: https://github.com/xing-yang/emc-openstack-cinder/blob/master/emc.py
 
 Copy emc.py to the cinder/volume directory of your OpenStack node(s) where cinder-volume is running.  This directory is where other Cinder drivers are located.
 
