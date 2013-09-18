@@ -478,7 +478,7 @@ class EMCISCSIDriver(driver.ISCSIDriver):
                      'volume': volumename})
 
         sync_name, storage_system = self._find_storage_sync_sv_sv(
-                                    snapshotname, volumename)
+                                    snapshotname, volumename, False)
         if sync_name is None:
             LOG.error(_('Snapshot: %(snapshot)s: volume: %(volume)s '
                       'not found on the array. No snapshot to delete.')
@@ -1186,9 +1186,11 @@ class EMCISCSIDriver(driver.ISCSIDriver):
 
         return foundinstance
 
-    def _find_storage_sync_sv_sv(self, snapshotname, volumename):
+    def _find_storage_sync_sv_sv(self, snapshotname, volumename,
+	                             waitforsync=True):
         foundsyncname = None
         storage_system = None
+		percent_synced = 0
 
         LOG.debug(_("Source: %(volumename)s  Target: %(snapshotname)s.")
                   % {'volumename': volumename, 'snapshotname': snapshotname})
@@ -1220,6 +1222,13 @@ class EMCISCSIDriver(driver.ISCSIDriver):
                       "Storage Synchronized instance: %(sync)s.")
                       % {'storage_system': storage_system,
                          'sync': str(foundsyncname)})
+            # Wait for SE_StorageSynchronized_SV_SV to be fully synced
+            while waitforsync and percent_synced < 100:
+                time.sleep(10)
+                sync_instance = self.conn.GetInstance(foundsyncname,
+                                                      LocalOnly=False)
+                percent_synced = sync_instance['PercentSynced']
+
         return foundsyncname, storage_system
 
     def _find_initiator_name(self, connector):
