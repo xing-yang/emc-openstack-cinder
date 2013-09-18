@@ -1190,7 +1190,7 @@ class EMCISCSIDriver(driver.ISCSIDriver):
 	                             waitforsync=True):
         foundsyncname = None
         storage_system = None
-		percent_synced = 0
+        percent_synced = 0
 
         LOG.debug(_("Source: %(volumename)s  Target: %(snapshotname)s.")
                   % {'volumename': volumename, 'snapshotname': snapshotname})
