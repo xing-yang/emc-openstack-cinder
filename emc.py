@@ -1187,7 +1187,7 @@ class EMCISCSIDriver(driver.ISCSIDriver):
         return foundinstance
 
     def _find_storage_sync_sv_sv(self, snapshotname, volumename,
-	                             waitforsync=True):
+                                 waitforsync=True):
         foundsyncname = None
         storage_system = None
         percent_synced = 0
