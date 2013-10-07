@@ -1225,8 +1225,8 @@ class EMCISCSIDriver(driver.ISCSIDriver):
             # Wait for SE_StorageSynchronized_SV_SV to be fully synced
             while waitforsync and percent_synced < 100:
                 time.sleep(10)
-                sync_instance = self.conn.GetInstance(foundsyncname,
-                                                      LocalOnly=False)
+                sync_instance = conn.GetInstance(foundsyncname,
+                                                 LocalOnly=False)
                 percent_synced = sync_instance['PercentSynced']
 
         return foundsyncname, storage_system
