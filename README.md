@@ -3,6 +3,8 @@ Introduction
 
 This guide explains how to configure and make use of the EMC Cinder driver with the Folsom release of OpenStack.
 
+For EMC Cinder drivers that support other OpenStack releases, visit https://github.com/emc-openstack.
+
 
 Overview
 ========
